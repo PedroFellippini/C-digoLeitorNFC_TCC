@@ -1,0 +1,9 @@
+Porta LEDs:
+R - GPIO 32(j. preto)
+W - GPIO 33(j. cinza)
+G - GPIO 34(j. branco)
+
+Função LEDs:
+R - Cartão Invalido/ Acesso Negado;
+W - Aguardando Aproximação do cartão;
+G - Cartão Valido  / Acesso Liberado.
