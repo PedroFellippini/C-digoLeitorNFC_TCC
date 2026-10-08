@@ -2,8 +2,9 @@ Componentes:
 #ESP32
 #Shield p/ ESP32
 #RC522(leitor NFC-RFID)
-#Display LCD
+#Display LCD 16x2 I2C
+#Protoboard 400 pontos
 #3x resistores 220
-#LED VERMELHO
-#LED VERDE
-#LED BRANCO
+#1x LED VERMELHO
+#1x LED VERDE
+#1x LED BRANCO
