@@ -1,1 +1,6 @@
-Componentes
+Componentes:
+#ESP32
+#Shield p/ ESP32
+#RC522(leitor NFC-RFID)
+#Display LCD
+
