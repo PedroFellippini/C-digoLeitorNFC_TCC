@@ -30,13 +30,10 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 // CARTÃO AUTORIZADO
 // ==========================
 
-byte uidAutorizado[] = {
-  0x7A,
-  0xBF,
-  0x3B,
-  0x1D
+byte uidAutorizado[][4] = {
+  {0x7A, 0xBF, 0x3B, 0x1D},
+  {0xD3, 0xC6, 0xEC, 0xF6}
 };
-
 // ==========================================
 // FUNÇÃO: LED AGUARDANDO
 // ==========================================
@@ -44,8 +41,8 @@ byte uidAutorizado[] = {
 void ledAguardando() {
 
   digitalWrite(LED_VERMELHO, LOW);
-  digitalWrite(LED_VERDE, LOW);
   digitalWrite(LED_BRANCO, HIGH);
+  digitalWrite(LED_VERDE, LOW);
 }
 
 // ==========================================
@@ -233,20 +230,28 @@ void loop() {
 // FUNÇÃO PARA VERIFICAR O CARTÃO
 // ==========================================
 
-bool cartaoAutorizado() {
 
-  // Verifica tamanho do UID
-  if (rfid.uid.size != sizeof(uidAutorizado)) {
+bool cartaoAutorizado() {
+  // Verifica se o UID possui 4 bytes
+  if (rfid.uid.size != 4) {
     return false;
   }
 
-  // Compara UID
-  for (byte i = 0; i < rfid.uid.size; i++) {
+  // Compara com os dois cartões autorizados
+  for (byte i = 0; i < 2; i++) {
+    bool igual = true;
 
-    if (rfid.uid.uidByte[i] != uidAutorizado[i]) {
-      return false;
+    for (byte j = 0; j < 4; j++) {
+      if (rfid.uid.uidByte[j] != uidAutorizado[i][j]) {
+        igual = false;
+        break;
+      }
+    }
+
+    if (igual) {
+      return true;
     }
   }
 
-  return true;
+  return false;
 }
