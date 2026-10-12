@@ -1,3 +1,7 @@
+// ==========================
+// BIBLIOTECAS
+// ==========================
+
 #include <SPI.h>
 #include <MFRC522.h>
 #include <Wire.h>
@@ -26,16 +30,18 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 #define LED_BRANCO   33
 #define LED_VERDE    25
 
-// ==========================
-// CARTÃO AUTORIZADO
-// ==========================
+// =============================================
+// CARTÕES AUTORIZADOS
+//pra "simular" um BD com os cartões cadastrados 
+// =============================================
 
 byte uidAutorizado[][4] = {
   {0x7A, 0xBF, 0x3B, 0x1D},
   {0xD3, 0xC6, 0xEC, 0xF6}
 };
+
 // ==========================================
-// FUNÇÃO: LED AGUARDANDO
+// FUNÇÃO: LED AGUARDANDO APROXIMAÇÃO
 // ==========================================
 
 void ledAguardando() {
@@ -67,10 +73,6 @@ void ledInvalido() {
   digitalWrite(LED_VERDE, LOW);
 }
 
-// ==========================================
-// SETUP
-// ==========================================
-
 void setup() {
 
   Serial.begin(115200);
@@ -87,7 +89,7 @@ void setup() {
   ledAguardando();
 
   // ==========================
-  // INICIA LCD
+  // STARTA LCD
   // ==========================
 
   Wire.begin(21, 22);
@@ -96,7 +98,7 @@ void setup() {
   lcd.backlight();
 
   // ==========================
-  // INICIA RC522
+  // STARTA RC522
   // ==========================
 
   SPI.begin();
@@ -117,10 +119,6 @@ void setup() {
   Serial.println("QUICKPASS iniciado.");
 }
 
-// ==========================================
-// LOOP
-// ==========================================
-
 void loop() {
 
   // ==========================
@@ -139,9 +137,9 @@ void loop() {
     return;
   }
 
-  // ==========================
-  // MOSTRA UID NO SERIAL
-  // ==========================
+  // ================================
+  // MOSTRA O UID DO CARTÃO NO SERIAL
+  // ================================
 
   Serial.print("UID: ");
 
@@ -166,7 +164,7 @@ void loop() {
 
   if (cartaoAutorizado()) {
 
-    Serial.println("CARTAO VALIDO");
+    Serial.println("CARTÃO VALIDO");
 
     // Acende LED verde
     ledValido();
@@ -188,7 +186,7 @@ void loop() {
 
   else {
 
-    Serial.println("CARTAO INVALIDO");
+    Serial.println("CARTÃO INVALIDO");
 
     // Acende LED vermelho
     ledInvalido();
@@ -232,7 +230,7 @@ void loop() {
 
 
 bool cartaoAutorizado() {
-  // Verifica se o UID possui 4 bytes
+  // Verifica se o UID possui 4 bytes(se está formatado da maneira correta)
   if (rfid.uid.size != 4) {
     return false;
   }
