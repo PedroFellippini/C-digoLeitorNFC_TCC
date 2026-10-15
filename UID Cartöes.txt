@@ -2,7 +2,7 @@ cartão 1      - A3:45:0C:12
 
 cartão 2(C)   - 7A:BF:3B:1D
 
-tag 1(C)      - D3:C6:EC:F6
+tag 1         - D3:C6:EC:F6
 
 tag 2         - E0:E5:E5:5C
 
