@@ -1,1 +1,1 @@
-# QUICKPASS NFC Card Reader: Firmware, Hardware Design, and Prototype Documentation
+# QUICKPASS NFC Card Reader: Firmware, Hardware Design, and Prototype Documentation.
