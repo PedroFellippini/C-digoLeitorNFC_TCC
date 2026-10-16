@@ -11,8 +11,8 @@
 // WIFI
 // ==========================
 
-const char* ssid = "Wifi 2.4";
-const char* password = "mfellippini1";
+const char* ssid = "Wifi-Rede";
+const char* password = "Senha";
 
 // ==========================
 // API QUICKPASS
